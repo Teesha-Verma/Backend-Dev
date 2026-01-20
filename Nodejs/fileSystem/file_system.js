@@ -2,21 +2,25 @@
 const file= require("fs") // inbuild module for custom modules we use "./" eg- ./fs
 const path= require("path")
 
-const fs= require("http") //
+const fs= require("http") 
 http.createServer(function(req,res){
     
 })
 
-const fs=require("fs");
+// 1 ) WRITE OPERTION
+
+// const fs=require("fs");
 fs.writeFileSync("./test.txt", "This is Sync file content")
 
-//Sync
+// 2) READ OPERATION
+
+// a) Sync
 
 const file=fs.readFileSync("test.txt","utf-8") // utf-8 is one of the method which is use to decode the file content
 console.log(file)
 
 
-// Async
+// b) Async
 const asyncFile=fs.readFile("test.txt","utf-8", (err,data)=>{
     if(err){
         console.log("error in file reading", err);
@@ -32,9 +36,37 @@ console.log(asyncFile)
 
 
 
-// //practice question
+// 3) COPY FILE
 
-// const logger = require("./logger")
-// logger.logActivity("user is logged in");
+const fs = require("fs");
+
+// a) FOR ASYNC
+
+// fs.copyFile("test.txt","dest.txt") // it is async and require a callback
+// console.log("file is copied")
+
+//callback for dest.txt
+
+fs.copyFile("test.txt","dest.txt",(err) => {
+    if(err) {
+        console.log("Error while copied a file",err)
+    }else {
+        console.log("file is copied successfully")
+    }
+}) // callback run after file finish copy
+
+// b) FOR SYNC
+
+fs.copyFileSync("test.txt","dest1.txt")
+console.log("file is copied")
 
 
+// 4) DELETING FILE
+//a) async
+fs.unlink("dest.txt",(err) => {
+    if(err) {
+        console.log("Error while deleting file",err)
+    }else {
+        console.log("file is deleted")
+    }
+})
