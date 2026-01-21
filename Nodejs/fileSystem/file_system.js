@@ -9,7 +9,7 @@ http.createServer(function(req,res){
 
 // 1 ) WRITE OPERTION
 
-// const fs=require("fs");
+const fs=require("fs");
 fs.writeFileSync("./test.txt", "This is Sync file content")
 
 // 2) READ OPERATION
@@ -37,16 +37,13 @@ console.log(asyncFile)
 
 
 // 3) COPY FILE
-
 const fs = require("fs");
 
 // a) FOR ASYNC
-
-// fs.copyFile("test.txt","dest.txt") // it is async and require a callback
-// console.log("file is copied")
+fs.copyFile("test.txt","dest.txt") // it is async and require a callback
+console.log("file is copied")
 
 //callback for dest.txt
-
 fs.copyFile("test.txt","dest.txt",(err) => {
     if(err) {
         console.log("Error while copied a file",err)
@@ -56,7 +53,6 @@ fs.copyFile("test.txt","dest.txt",(err) => {
 }) // callback run after file finish copy
 
 // b) FOR SYNC
-
 fs.copyFileSync("test.txt","dest1.txt")
 console.log("file is copied")
 
@@ -69,4 +65,46 @@ fs.unlink("dest.txt",(err) => {
     }else {
         console.log("file is deleted")
     }
+})
+
+// 5) CREATING NEW DIRECTORY
+
+fs.mkdir("newDirectory", (err)=>{
+    if(err) return;
+    console.log("Directory created")
+    
+})
+fs.mkdir("folders/folder1/folder2", { recursive: true},(err)=>{
+    if(err){
+        console.log(err);
+        return
+    }
+    console.log("Directory is created");
+})
+
+
+// 6) READING FILE IN DIRECTORY
+fs.readdir("newDirectory", (err, files)=>{
+    if(err){
+        console.log(err); return
+    }
+    console.log("files:",files)
+})
+
+
+// 7) EMPTY DIRECTORY DELETION
+fs.rmdir("newDirectory", (err)=>{  // is used to delete empty directory
+    if(err){
+        console.log(err); return
+    }
+    console.log("directory is removed")
+})
+
+
+// 8) DIRECTORY FILE DELETION
+fs.rm("newDirectory/index.js", (err)=>{ // is use to delete file in a dir
+    if(err){
+        console.log(err); return
+    }
+    console.log("directory is removed")
 })
