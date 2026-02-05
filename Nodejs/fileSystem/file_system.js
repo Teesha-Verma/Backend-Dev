@@ -8,9 +8,11 @@ http.createServer(function(req,res){
 })
 
 // 1 ) WRITE OPERTION
-
+//a) Sync
 const fs=require("fs");
 fs.writeFileSync("./test.txt", "This is Sync file content")
+
+//b) Async
 
 // 2) READ OPERATION
 
