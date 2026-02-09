@@ -39,13 +39,6 @@ app.get("/student/:id",(req,res)=>{
     res.json(foundStudent);
 });
 
-// c)
-app.get("/student",(req,res)=>{
-   
-    return res.json(student)
-}
-)
-
 
 
 // 2) POST METHOD
@@ -77,11 +70,12 @@ app.post("student/register2",(req,res)=>{
     const{name,branch}=req.body;
     if(!name|| !branch) return res.status(400).send("Details missing");
     //send the file first
-    fs.readFile("./student.json","utf-8",(err,data)=>{
-        if(err) return res.status(500).send("could not read file");
+    // fs.readFile("./student.json","utf-8",(err,data)=>{
+    //     if(err) return res.status(500).send("could not read file");
 
-        //parsing existing data or start with empty array
-        const student=JSON.parse(data||"[]");
+    //     //parsing existing data or start with empty array
+    //     const student=JSON.parse(data||"[]");
+    const existing=readStudentsFromFile();
 
         // create and push new student
         const newStudent={
@@ -102,7 +96,7 @@ app.post("student/register2",(req,res)=>{
         })
 
     })
-})
+//})
 
 
 //UPDATE THE STUDENT DETAIL
@@ -124,6 +118,15 @@ app.put("/student/update/:id",(req, res) =>{
   })
 })
 
+
+const readStudentsFromFile=()=>{
+    const results=fs.readFile("./student.json","utf-8",(err,data)=>{
+        const students=JSON.parse(data||"[]");
+        return students;
+
+    })
+    
+}
 
 
 app.listen(PORT,()=>{

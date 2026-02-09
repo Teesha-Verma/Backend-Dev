@@ -1,0 +1,10 @@
+2026-02-09T09:19:01.264Z | GET /students | 200 | 17ms
+2026-02-09T09:21:28.141Z | GET /students | 200 | 11ms
+2026-02-09T09:40:55.531Z | GET /students | 200 | 5ms
+2026-02-09T09:41:29.668Z | GET /students | 200 | 16ms
+2026-02-09T09:41:47.300Z | GET /students | 200 | 3ms
+2026-02-09T09:42:35.322Z | GET /students | 403 | 17ms
+2026-02-09T09:48:58.143Z | GET /students | 200 | 16ms
+2026-02-09T09:49:04.276Z | GET /students | 200 | 1ms
+2026-02-09T09:49:58.228Z | GET /students | 404 | 5ms
+2026-02-09T09:51:07.391Z | GET /students | 404 | 13ms
